@@ -1,6 +1,6 @@
-package com.msstudy.msclient.domain.repositories;
+package com.msstudy.msclients.domain.repositories;
 
-import com.msstudy.msclient.domain.entities.ClientEntity;
+import com.msstudy.msclients.domain.entities.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,13 +1,13 @@
-package com.msstudy.msclient;
+package com.msstudy.msclients;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsclientApplication {
+public class MsClientsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsclientApplication.class, args);
+		SpringApplication.run(MsClientsApplication.class, args);
 	}
 
 }

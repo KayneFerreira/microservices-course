@@ -1,4 +1,4 @@
-package com.msstudy.msclient;
+package com.msstudy.msclients;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.msstudy.msclient.domain.entities;
+package com.msstudy.msclients.domain.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,5 +18,11 @@ public class ClientEntity {
     private String cpf;
     private String name;
     private Integer age;
+
+    public ClientEntity(String cpf,String name,Integer age) {
+        this.cpf = cpf;
+        this.name = name;
+        this.age = age;
+    }
 
 }

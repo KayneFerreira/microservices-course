@@ -1,11 +1,9 @@
-package com.msstudy.msclient.service;
+package com.msstudy.msclients.service;
 
-import com.msstudy.msclient.domain.entities.ClientEntity;
-import com.msstudy.msclient.domain.repositories.ClientRepository;
+import com.msstudy.msclients.domain.entities.ClientEntity;
+import com.msstudy.msclients.domain.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
