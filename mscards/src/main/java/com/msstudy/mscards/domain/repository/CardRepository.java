@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CardRepository extends JpaRepository<CardEntity, Long> {
 
-    List<CardEntity> findByMonthlyIncomeLessThanEqual(BigDecimal bdIncome);
+    List<CardEntity> findByIncomeLessThanEqual(BigDecimal bdIncome);
 
 }

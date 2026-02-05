@@ -1,7 +1,12 @@
 package com.msstudy.mscards.domain.entities;
 
 import com.msstudy.mscards.domain.enums.CardFlag;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,13 +24,13 @@ public class CardEntity {
 
     @Enumerated(value = EnumType.STRING)
     private CardFlag flag;
-    private BigDecimal monthlyIncome;
+    private BigDecimal income;
     private BigDecimal baseLimit;
 
     public CardEntity(String name, CardFlag flag, BigDecimal income, BigDecimal limit) {
         this.name = name;
         this.flag = flag;
-        this.monthlyIncome = income;
+        this.income = income;
         this.baseLimit = limit;
     }
 }

@@ -24,7 +24,7 @@ public class CardService {
 
     public List<CardEntity> getCardsMinimalIncome(Long income) {
         BigDecimal bdIncome = BigDecimal.valueOf(income);
-        return repository.findByMonthlyIncomeLessThanEqual(bdIncome);
+        return repository.findByIncomeLessThanEqual(bdIncome);
     }
 
 }

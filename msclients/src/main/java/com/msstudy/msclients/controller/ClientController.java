@@ -16,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 public class ClientController {
 
-    private Long counter = 0L;
+    private Long counter = 0L;  // Contador para teste de gateway calls
 
     private final ClientService service;
 
