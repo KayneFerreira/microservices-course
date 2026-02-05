@@ -3,6 +3,7 @@ package com.msstudy.msclients.controller;
 import com.msstudy.msclients.domain.entities.ClientEntity;
 import com.msstudy.msclients.dtos.ClientSaveRequest;
 import com.msstudy.msclients.service.ClientService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,7 +13,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("clients")
+@Slf4j
 public class ClientController {
+
+    private Long counter = 0L;
 
     private final ClientService service;
 
@@ -22,6 +26,8 @@ public class ClientController {
 
     @GetMapping("/test")
     public String status() {
+        counter++;
+        log.info("CLIENT CALL: " + counter);
         return "Client Controller OK";
     }
 
