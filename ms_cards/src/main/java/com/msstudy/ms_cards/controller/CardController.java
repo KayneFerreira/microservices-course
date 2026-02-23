@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msstudy.ms_cards.domain.entities.CardEntity;
-import com.msstudy.ms_cards.domain.entities.ClientCard;
+import com.msstudy.ms_cards.domain.entities.CustomerCard;
 import com.msstudy.ms_cards.dtos.CardSaveRequest;
-import com.msstudy.ms_cards.dtos.ClientCardResponse;
+import com.msstudy.ms_cards.dtos.CustomerCardResponse;
 import com.msstudy.ms_cards.services.CardService;
-import com.msstudy.ms_cards.services.ClientCardService;
+import com.msstudy.ms_cards.services.CustomerCardService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class CardController {
 
     private final CardService cardService;
-    private final ClientCardService clientCardService;
+    private final CustomerCardService clientCardService;
 
     @GetMapping("/test")
     public String status() {
@@ -40,16 +40,16 @@ public class CardController {
     }
 
     @GetMapping(params = "income")
-    public ResponseEntity<List<CardEntity>> getCardByMinimumIncome(@RequestParam("income") Long income) {
+    public ResponseEntity<List<CardEntity>> getCardByMinimumIncome(@RequestParam Long income) {
         List<CardEntity> list = cardService.getCardsMinimalIncome(income);
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
     @GetMapping(params = "cpf")
-    public ResponseEntity<List<ClientCardResponse>> getCardByClientCpf(@RequestParam("cpf") String cpf) {
-        List<ClientCard> list = clientCardService.findCardsByCpf(cpf);
-        List<ClientCardResponse> mappedList = list.stream()
-                .map(ClientCardResponse::fromModel)
+    public ResponseEntity<List<CustomerCardResponse>> getCardByClientCpf(@RequestParam String cpf) {
+        List<CustomerCard> list = clientCardService.findCardsByCpf(cpf);
+        List<CustomerCardResponse> mappedList = list.stream()
+                .map(CustomerCardResponse::fromModel)
                 .toList();
         return ResponseEntity.status(HttpStatus.OK).body(mappedList);
     }

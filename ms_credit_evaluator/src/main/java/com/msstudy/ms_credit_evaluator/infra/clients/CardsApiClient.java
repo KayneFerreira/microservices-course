@@ -14,5 +14,8 @@ public interface CardsApiClient {
 	
 	@GetMapping(params = "cpf")
     ResponseEntity<List<CustomerCard>> customerCardData(@RequestParam String cpf);
+	
+	@GetMapping(params = "income")
+    ResponseEntity<List<CustomerCard>> getCardByMinimumIncome(@RequestParam Long income);
 
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Data
-public class ClientCard {
+public class CustomerCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

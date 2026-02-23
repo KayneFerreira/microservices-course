@@ -1,6 +1,6 @@
 package com.msstudy.ms_cards.dtos;
 
-import com.msstudy.ms_cards.domain.entities.ClientCard;
+import com.msstudy.ms_cards.domain.entities.CustomerCard;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientCardResponse {
+public class CustomerCardResponse {
 
     private String name;
 
@@ -20,8 +20,8 @@ public class ClientCardResponse {
     private String flag;
     private BigDecimal approvedLimit;
 
-    public static ClientCardResponse fromModel(ClientCard model) {
-        return new ClientCardResponse(
+    public static CustomerCardResponse fromModel(CustomerCard model) {
+        return new CustomerCardResponse(
                 model.getCard().getName(),
                 model.getCard().getFlag().toString(),
                 model.getBaseLimit()
