@@ -61,12 +61,8 @@ public class CreditEvaluatorService {
     		
     		List<CustomerCard> cardList = cardsResponse.getBody();
     		
-    		System.out.println("GET CARD LIST: " + cardList);
-    		
     		List<ApprovedCards> approvedCardsList = cardList.stream().map(card -> {
     			CustomerData customerData = customerDataResponse.getBody();
-    			
-    			System.out.println("CUSTOMER DATA: " + customerData);
     			
     			BigDecimal baseLimit = card.getBaseLimit();
     			BigDecimal ageBD = BigDecimal.valueOf(customerData.getAge());
@@ -77,8 +73,6 @@ public class CreditEvaluatorService {
     			approvedCard.setCardName(card.getName());
     			approvedCard.setFlag(card.getFlag());
     			approvedCard.setApprovedLimit(approvedLimit);
-    			
-    			System.out.println("APPROVED CARD BUILD " + approvedCard);
     			
     			return approvedCard;
     		}).collect(Collectors.toList());

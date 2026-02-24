@@ -1,4 +1,4 @@
-package com.msstudy.ms_cards.domain.repository;
+package com.msstudy.ms_cards.infra.repository;
 
 import com.msstudy.ms_cards.domain.entities.CardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

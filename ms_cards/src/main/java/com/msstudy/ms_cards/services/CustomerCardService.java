@@ -1,7 +1,8 @@
 package com.msstudy.ms_cards.services;
 
 import com.msstudy.ms_cards.domain.entities.CustomerCard;
-import com.msstudy.ms_cards.domain.repository.CustomerCardRepository;
+import com.msstudy.ms_cards.infra.repository.CustomerCardRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,8 @@
 package com.msstudy.ms_cards.services;
 
 import com.msstudy.ms_cards.domain.entities.CardEntity;
-import com.msstudy.ms_cards.domain.repository.CardRepository;
+import com.msstudy.ms_cards.infra.repository.CardRepository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
