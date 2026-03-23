@@ -23,4 +23,4 @@ eureka:
 
 mq:
   queues:
-    card-approval: card-approval
+    card-emission: card-emission

@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.msstudy.ms_credit_evaluator.application.exceptions.CardRequestException;
 import com.msstudy.ms_credit_evaluator.application.exceptions.ClientDataNotFoundException;
 import com.msstudy.ms_credit_evaluator.application.exceptions.MicroserviceCommunicationError;
 import com.msstudy.ms_credit_evaluator.domain.model.AvailabilityCheckResponse;
 import com.msstudy.ms_credit_evaluator.domain.model.AvailabilityData;
+import com.msstudy.ms_credit_evaluator.domain.model.CardEmissionData;
+import com.msstudy.ms_credit_evaluator.domain.model.CardRequestProtocol;
 import com.msstudy.ms_credit_evaluator.domain.model.CustomerStatus;
 
 import lombok.RequiredArgsConstructor;
@@ -59,6 +62,17 @@ public class CreditEvaluatorController {
 		catch (MicroserviceCommunicationError e) {
 			return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
 		}
+    }
+    
+    
+    @PostMapping("card-requests")
+    public ResponseEntity requestCard(@RequestBody CardEmissionData data) {
+    	try {
+    		CardRequestProtocol cardRequestProtocol = creditEvaluatorService.requestCardEmission(data);
+    		return ResponseEntity.status(HttpStatus.OK).body(cardRequestProtocol);
+    	} catch (CardRequestException e) {
+    		return ResponseEntity.internalServerError().body(e.getMessage());
+    	}
     }
     
 }

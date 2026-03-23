@@ -2,21 +2,26 @@ package com.msstudy.ms_credit_evaluator.application;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.msstudy.ms_credit_evaluator.application.exceptions.CardRequestException;
 import com.msstudy.ms_credit_evaluator.application.exceptions.ClientDataNotFoundException;
 import com.msstudy.ms_credit_evaluator.application.exceptions.MicroserviceCommunicationError;
 import com.msstudy.ms_credit_evaluator.domain.model.ApprovedCards;
 import com.msstudy.ms_credit_evaluator.domain.model.AvailabilityCheckResponse;
+import com.msstudy.ms_credit_evaluator.domain.model.CardEmissionData;
+import com.msstudy.ms_credit_evaluator.domain.model.CardRequestProtocol;
 import com.msstudy.ms_credit_evaluator.domain.model.CustomerCard;
 import com.msstudy.ms_credit_evaluator.domain.model.CustomerData;
 import com.msstudy.ms_credit_evaluator.domain.model.CustomerStatus;
 import com.msstudy.ms_credit_evaluator.infra.clients.CardsApiClient;
 import com.msstudy.ms_credit_evaluator.infra.clients.CustomerApiClient;
+import com.msstudy.ms_credit_evaluator.infra.mqueue.CardEmissionRequestPublisher;
 
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +32,7 @@ public class CreditEvaluatorService {
 	
 	private final CustomerApiClient customerClient;
 	private final CardsApiClient cardClient;
+	private final CardEmissionRequestPublisher publisher;
 
 	
     public CustomerStatus getCustomerStatus(String cpf) 
@@ -86,6 +92,17 @@ public class CreditEvaluatorService {
 			}
 			throw new MicroserviceCommunicationError(exception.getMessage(), status);
 		}
+    }
+    
+    
+    public CardRequestProtocol requestCardEmission(CardEmissionData data) {
+    	try {
+    		publisher.requestCard(data);
+    		String protocol = UUID.randomUUID().toString();
+    		return new CardRequestProtocol(protocol);
+    	} catch (Exception e) {
+    		throw new CardRequestException(e.getMessage());
+    	}
     }
     
 }

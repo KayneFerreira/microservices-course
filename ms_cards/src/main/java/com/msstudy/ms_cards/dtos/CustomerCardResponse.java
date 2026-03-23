@@ -14,14 +14,16 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class CustomerCardResponse {
 
+	private Long id;
     private String name;
 
     @Enumerated(value = EnumType.STRING)
     private String flag;
-    private BigDecimal approvedLimit;
+    private BigDecimal baseLimit;
 
     public static CustomerCardResponse fromModel(CustomerCard model) {
         return new CustomerCardResponse(
+        		model.getCard().getId(),
                 model.getCard().getName(),
                 model.getCard().getFlag().toString(),
                 model.getBaseLimit()
